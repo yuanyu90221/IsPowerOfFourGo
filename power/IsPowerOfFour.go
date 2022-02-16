@@ -1,13 +1,13 @@
 package power
 
 import (
-	"regexp"
-	"strconv"
+	"math"
 )
 
 func IsPowerOfFour(n int64) bool {
-	base4Pattern := "^10*$"
-	input := strconv.FormatInt(n, 4)
-	match, _ := regexp.MatchString(base4Pattern, input)
-	return match
+	if n <= 0 {
+		return false
+	}
+	result := math.Log(float64(n)) / math.Log(4)
+	return int(math.Floor(result)) == int(math.Ceil(result))
 }
